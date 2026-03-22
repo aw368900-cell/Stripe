@@ -3,187 +3,185 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>StripeFlow | Premium Account Solutions</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <title>StripeFlow Pro | Enterprise Accounts</title>
     <style>
         :root {
-            --primary: #635bff;
-            --primary-hover: #7a73ff;
-            --bg: #0a2540;
-            --text: #adbdcc;
-            --white: #ffffff;
-            --glass: rgba(255, 255, 255, 0.05);
+            --acc: #635bff;
+            --dark: #050810;
+            --card: #111827;
+            --border: rgba(255,255,255,0.1);
+            --text-main: #f9fafb;
+            --text-dim: #94a3b8;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg);
-            color: var(--text);
-            line-height: 1.6;
+        * { margin:0; padding:0; box-sizing:border-box; scroll-behavior: smooth; }
+        body { 
+            background: var(--dark); 
+            color: var(--text-main); 
+            font-family: 'Segoe UI', Roboto, sans-serif;
             overflow-x: hidden;
         }
 
-        /* --- Modern Sticky Nav --- */
-        nav {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            background: rgba(10, 37, 64, 0.8);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--glass);
-            padding: 1rem 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        /* Animated Mesh Background */
+        .mesh {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(at 0% 0%, hsla(253,16%,7%,1) 0, transparent 50%), 
+                        radial-gradient(at 50% 0%, hsla(225,39%,30%,1) 0, transparent 50%), 
+                        radial-gradient(at 100% 0%, hsla(339,49%,30%,1) 0, transparent 50%);
+            z-index: -1; opacity: 0.5;
         }
-        .logo { color: var(--white); font-weight: 800; font-size: 1.5rem; text-decoration: none; }
-        .nav-links a { color: var(--text); text-decoration: none; margin-left: 2rem; font-size: 0.9rem; transition: 0.3s; }
-        .nav-links a:hover { color: var(--white); }
-        .btn-sm { background: var(--primary); color: white !important; padding: 8px 20px; border-radius: 50px; font-weight: 600; }
 
-        /* --- Hero Section --- */
-        section { padding: 100px 10%; min-height: 80vh; display: flex; flex-direction: column; justify-content: center; }
-        .hero { text-align: center; background: radial-gradient(circle at top right, #1a3a5a, var(--bg)); }
-        h1 { color: var(--white); font-size: clamp(2.5rem, 6vw, 4.5rem); line-height: 1.1; margin-bottom: 1.5rem; }
-        .hero p { font-size: 1.25rem; max-width: 700px; margin: 0 auto 2rem; }
-        .cta-group { display: flex; gap: 1rem; justify-content: center; }
-        .btn-lg { padding: 16px 32px; border-radius: 8px; font-weight: 600; text-decoration: none; transition: 0.3s; }
-        .primary-btn { background: var(--primary); color: white; }
-        .primary-btn:hover { background: var(--primary-hover); transform: translateY(-2px); }
-
-        /* --- Scroll Animations (Modern CSS 2026) --- */
-        @keyframes reveal {
-            from { opacity: 0; transform: translateY(50px); }
-            to { opacity: 1; transform: translateY(0); }
+        /* Sticky Header */
+        header {
+            position: sticky; top: 0; z-index: 100;
+            backdrop-filter: blur(20px); border-bottom: 1px solid var(--border);
+            padding: 1.2rem 8%; display: flex; justify-content: space-between; align-items: center;
         }
+
+        .cta-pill {
+            background: var(--acc); color: white; padding: 10px 24px;
+            border-radius: 99px; text-decoration: none; font-weight: 600;
+            transition: 0.3s; border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        /* Sections */
+        section { padding: 120px 8%; }
+        .hero { text-align: center; padding-top: 180px; }
+        h1 { font-size: 5rem; letter-spacing: -2px; line-height: 1; margin-bottom: 20px; }
+        .hero p { font-size: 1.4rem; color: var(--text-dim); max-width: 800px; margin: 0 auto 40px; }
+
+        /* Bento Grid */
+        .bento {
+            display: grid; grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(2, 300px); gap: 20px;
+        }
+        .bento-item {
+            background: var(--card); border: 1px solid var(--border);
+            border-radius: 24px; padding: 40px; position: relative;
+            overflow: hidden; transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .bento-item:hover { transform: scale(1.02); border-color: var(--acc); }
+        .large { grid-column: span 2; }
+        .tall { grid-row: span 2; }
+
+        /* Comparison Table */
+        .table-container { 
+            margin-top: 100px; background: var(--card); 
+            border-radius: 24px; overflow: hidden; border: 1px solid var(--border);
+        }
+        table { width: 100%; border-collapse: collapse; text-align: left; }
+        th, td { padding: 24px; border-bottom: 1px solid var(--border); }
+        th { background: rgba(255,255,255,0.05); color: var(--acc); }
+
+        /* Scrollytelling Animation */
         .reveal {
-            view-timeline-name: --item;
-            view-timeline-axis: block;
-            animation-timeline: --item;
-            animation-name: reveal;
-            animation-range: entry 10% cover 30%;
-            animation-fill-mode: both;
+            opacity: 0; transform: translateY(40px);
+            transition: all 0.8s ease-out;
         }
+        .reveal.active { opacity: 1; transform: translateY(0); }
 
-        /* --- Services Grid --- */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 4rem; }
-        .card { background: var(--glass); padding: 2.5rem; border-radius: 16px; border: 1px solid var(--glass); transition: 0.4s; }
-        .card:hover { border-color: var(--primary); background: rgba(255,255,255,0.08); }
-        .card h3 { color: var(--white); margin-bottom: 1rem; }
-        .icon { width: 40px; height: 40px; background: var(--primary); border-radius: 8px; margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: center; color: white; }
+        /* Footer */
+        footer { border-top: 1px solid var(--border); padding: 60px 8%; display: flex; justify-content: space-between; color: var(--text-dim); }
 
-        /* --- Feature Section --- */
-        .feature-row { display: flex; align-items: center; gap: 4rem; margin-bottom: 100px; }
-        .feature-row:nth-child(even) { flex-direction: row-reverse; }
-        .feature-text { flex: 1; }
-        .feature-image { flex: 1; background: linear-gradient(45deg, #0f172a, #1e293b); height: 400px; border-radius: 24px; border: 1px solid var(--glass); position: relative; overflow: hidden; }
-        .feature-image::after { content: "UI Preview"; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-weight: 800; opacity: 0.2; }
-
-        /* --- Long Form Content (The "Service" Section) --- */
-        .service-details { max-width: 900px; margin: 0 auto; }
-        .service-details h2 { font-size: 3rem; color: var(--white); text-align: center; margin-bottom: 3rem; }
-        .step { position: relative; padding-left: 50px; margin-bottom: 4rem; border-left: 2px solid var(--primary); }
-        .step-num { position: absolute; left: -16px; top: 0; background: var(--primary); color: white; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; }
-
-        footer { padding: 50px 10%; border-top: 1px solid var(--glass); text-align: center; font-size: 0.8rem; }
-
-        @media (max-width: 768px) {
-            .feature-row { flex-direction: column !important; }
-            .nav-links { display: none; }
+        @media (max-width: 1024px) {
+            .bento { grid-template-columns: 1fr 1fr; }
+            h1 { font-size: 3rem; }
         }
     </style>
 </head>
 <body>
-
-    <nav>
-        <a href="#" class="logo">StripeFlow</a>
-        <div class="nav-links">
-            <a href="#services">Services</a>
-            <a href="#process">Process</a>
-            <a href="#security">Security</a>
-            <a href="#" class="btn-sm">Get Started</a>
-        </div>
-    </nav>
+    <div class="mesh"></div>
+    
+    <header>
+        <div style="font-weight: 900; font-size: 1.5rem;">STRIPE<span style="color:var(--acc)">FLOW</span></div>
+        <nav style="display: flex; gap: 30px; align-items: center;">
+            <a href="#features" style="color:var(--text-dim); text-decoration:none;">Features</a>
+            <a href="#pricing" style="color:var(--text-dim); text-decoration:none;">Pricing</a>
+            <a href="#" class="cta-pill">Secure Access</a>
+        </nav>
+    </header>
 
     <section class="hero">
-        <h1 class="reveal">Global Payments,<br>Zero Boundaries.</h1>
-        <p class="reveal">We provide fully verified, high-limit Stripe accounts for entrepreneurs worldwide. Skip the red tape and start scaling today.</p>
-        <div class="cta-group reveal">
-            <a href="#" class="btn-lg primary-btn">Buy Account Now</a>
-            <a href="#" class="btn-lg" style="color: white; border: 1px solid var(--glass);">View Pricing</a>
+        <div class="reveal">
+            <span style="background: rgba(99, 91, 255, 0.1); color: var(--acc); padding: 8px 16px; border-radius: 20px; font-size: 0.9rem; font-weight: 600;">NEW: 2026 INSTANT PAYOUT ACCOUNTS</span>
+            <h1>Scale Without Limits.</h1>
+            <p>Premium, pre-aged Stripe accounts designed for high-velocity merchants. No verification loops, no sudden holds—just pure growth.</p>
         </div>
     </section>
 
-    <section id="services">
-        <div class="service-details reveal">
-            <h2>Engineered for Scale</h2>
-            <p style="text-align: center; margin-bottom: 50px;">Don't let regional restrictions or documentation hurdles stop your business. Our Stripe solutions are built for high-volume e-commerce and SaaS platforms.</p>
-        </div>
-        
-        <div class="grid">
-            <div class="card reveal">
-                <div class="icon">✓</div>
-                <h3>Fully Verified</h3>
-                <p>Documents, address, and EIN/Tax ID verification completed. Ready for immediate payout integration.</p>
+    <section id="features">
+        <div class="bento">
+            <div class="bento-item large reveal">
+                <h2 style="color:var(--acc)">01</h2>
+                <h3>Pre-Warmed Infrastructure</h3>
+                <p>Every account comes with 3-6 months of transaction history to ensure high trust scores from Day 1.</p>
             </div>
-            <div class="card reveal">
-                <div class="icon">⚡</div>
-                <h3>Instant Onboarding</h3>
-                <p>No 7-day waiting periods. Receive your credentials and start processing live transactions within hours.</p>
+            <div class="bento-item tall reveal">
+                <h3>Global Reach</h3>
+                <p>Access accounts in US, UK, EU, and Hong Kong. Local bank settlement included.</p>
+                <div style="margin-top: 40px; font-size: 4rem; opacity: 0.1;">🌍</div>
             </div>
-            <div class="card reveal">
-                <div class="icon">🛡️</div>
-                <h3>Anti-Ban Shield</h3>
-                <p>Accounts warmed up with legitimate transaction history to minimize risk of sudden holds.</p>
+            <div class="bento-item reveal">
+                <h3>API Ready</h3>
+                <p>Full webhook support and documentation for custom SaaS builds.</p>
+            </div>
+            <div class="bento-item reveal">
+                <h3>24/7 Shield</h3>
+                <p>Dedicated dispute management team available around the clock.</p>
+            </div>
+            <div class="bento-item large reveal">
+                <h3>No Documentation Required</h3>
+                <p>We handle the heavy lifting of KYC and AML compliance so you can focus on selling.</p>
             </div>
         </div>
     </section>
 
-    <section id="process">
-        <div class="feature-row reveal">
-            <div class="feature-text">
-                <h2 style="color: white; margin-bottom: 1.5rem;">How it Works</h2>
-                <div class="step">
-                    <span class="step-num">1</span>
-                    <h4 style="color: white;">Select Your Region</h4>
-                    <p>Choose between US, UK, or EU-based accounts depending on your business needs.</p>
-                </div>
-                <div class="step">
-                    <span class="step-num">2</span>
-                    <h4 style="color: white;">Automated Setup</h4>
-                    <p>Our system configures the secondary security layers and hands over recovery keys.</p>
-                </div>
-                <div class="step">
-                    <span class="step-num">3</span>
-                    <h4 style="color: white;">Go Live</h4>
-                    <p>Connect your store via API and begin accepting 135+ currencies instantly.</p>
-                </div>
-            </div>
-            <div class="feature-image"></div>
+    <section id="pricing">
+        <h2 style="text-align: center; font-size: 3rem; margin-bottom: 50px;">Account Tiers</h2>
+        <div class="table-container reveal">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Starter Account</th>
+                        <th>Scale Account</th>
+                        <th>Enterprise Pro</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Monthly Limit</td><td>$50,000</td><td>$250,000</td><td>Unlimited</td></tr>
+                    <tr><td>Payout Speed</td><td>3 Days</td><td>24 Hours</td><td>Instant</td></tr>
+                    <tr><td>Documents Included</td><td>Basic</td><td>Full Legal Pack</td><td>Corporate EIN</td></tr>
+                    <tr><td>Price</td><td>$499</td><td>$1,299</td><td>$2,999</td></tr>
+                </tbody>
+            </table>
         </div>
     </section>
 
-    <section id="security" style="background: rgba(0,0,0,0.2);">
-        <div class="service-details reveal">
-            <h2 style="font-size: 2.5rem;">Unmatched Reliability</h2>
-            <div class="grid">
-                <div class="card reveal">
-                    <h3>24/7 Support</h3>
-                    <p>Dedicated account managers to help with transaction disputes and technical API integration.</p>
-                </div>
-                <div class="card reveal">
-                    <h3>Rolling Reserves</h3>
-                    <p>We provide guidance on managing reserves to keep your cash flow healthy and account standing "Excellent".</p>
-                </div>
-            </div>
-        </div>
+    <section style="text-align: center; border-radius: 40px; background: var(--acc); color: white; margin: 0 8% 100px;">
+        <h2 style="font-size: 3.5rem;">Ready to process?</h2>
+        <p style="margin-bottom: 30px; opacity: 0.9;">Join 4,000+ merchants currently scaling with our infrastructure.</p>
+        <a href="#" class="cta-pill" style="background: white; color: var(--acc); font-size: 1.2rem; padding: 20px 50px;">Get Your Account Now</a>
     </section>
 
     <footer>
-        <p>&copy; 2026 StripeFlow Solutions. All rights reserved. Not affiliated with Stripe, Inc.</p>
+        <div>&copy; 2026 StripeFlow Infrastructure Group.</div>
+        <div style="display: flex; gap: 20px;">
+            <span>Privacy</span>
+            <span>Terms</span>
+            <span>Support</span>
+        </div>
     </footer>
 
+    <script>
+        // Simple Intersection Observer for scroll animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('active');
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
 </body>
 </html>
