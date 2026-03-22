@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StripeFlow | Premium Account Solutions</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #635bff;
+            --primary-hover: #7a73ff;
+            --bg: #0a2540;
+            --text: #adbdcc;
+            --white: #ffffff;
+            --glass: rgba(255, 255, 255, 0.05);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- Modern Sticky Nav --- */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(10, 37, 64, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--glass);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo { color: var(--white); font-weight: 800; font-size: 1.5rem; text-decoration: none; }
+        .nav-links a { color: var(--text); text-decoration: none; margin-left: 2rem; font-size: 0.9rem; transition: 0.3s; }
+        .nav-links a:hover { color: var(--white); }
+        .btn-sm { background: var(--primary); color: white !important; padding: 8px 20px; border-radius: 50px; font-weight: 600; }
+
+        /* --- Hero Section --- */
+        section { padding: 100px 10%; min-height: 80vh; display: flex; flex-direction: column; justify-content: center; }
+        .hero { text-align: center; background: radial-gradient(circle at top right, #1a3a5a, var(--bg)); }
+        h1 { color: var(--white); font-size: clamp(2.5rem, 6vw, 4.5rem); line-height: 1.1; margin-bottom: 1.5rem; }
+        .hero p { font-size: 1.25rem; max-width: 700px; margin: 0 auto 2rem; }
+        .cta-group { display: flex; gap: 1rem; justify-content: center; }
+        .btn-lg { padding: 16px 32px; border-radius: 8px; font-weight: 600; text-decoration: none; transition: 0.3s; }
+        .primary-btn { background: var(--primary); color: white; }
+        .primary-btn:hover { background: var(--primary-hover); transform: translateY(-2px); }
+
+        /* --- Scroll Animations (Modern CSS 2026) --- */
+        @keyframes reveal {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .reveal {
+            view-timeline-name: --item;
+            view-timeline-axis: block;
+            animation-timeline: --item;
+            animation-name: reveal;
+            animation-range: entry 10% cover 30%;
+            animation-fill-mode: both;
+        }
+
+        /* --- Services Grid --- */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 4rem; }
+        .card { background: var(--glass); padding: 2.5rem; border-radius: 16px; border: 1px solid var(--glass); transition: 0.4s; }
+        .card:hover { border-color: var(--primary); background: rgba(255,255,255,0.08); }
+        .card h3 { color: var(--white); margin-bottom: 1rem; }
+        .icon { width: 40px; height: 40px; background: var(--primary); border-radius: 8px; margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: center; color: white; }
+
+        /* --- Feature Section --- */
+        .feature-row { display: flex; align-items: center; gap: 4rem; margin-bottom: 100px; }
+        .feature-row:nth-child(even) { flex-direction: row-reverse; }
+        .feature-text { flex: 1; }
+        .feature-image { flex: 1; background: linear-gradient(45deg, #0f172a, #1e293b); height: 400px; border-radius: 24px; border: 1px solid var(--glass); position: relative; overflow: hidden; }
+        .feature-image::after { content: "UI Preview"; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-weight: 800; opacity: 0.2; }
+
+        /* --- Long Form Content (The "Service" Section) --- */
+        .service-details { max-width: 900px; margin: 0 auto; }
+        .service-details h2 { font-size: 3rem; color: var(--white); text-align: center; margin-bottom: 3rem; }
+        .step { position: relative; padding-left: 50px; margin-bottom: 4rem; border-left: 2px solid var(--primary); }
+        .step-num { position: absolute; left: -16px; top: 0; background: var(--primary); color: white; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; }
+
+        footer { padding: 50px 10%; border-top: 1px solid var(--glass); text-align: center; font-size: 0.8rem; }
+
+        @media (max-width: 768px) {
+            .feature-row { flex-direction: column !important; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#" class="logo">StripeFlow</a>
+        <div class="nav-links">
+            <a href="#services">Services</a>
+            <a href="#process">Process</a>
+            <a href="#security">Security</a>
+            <a href="#" class="btn-sm">Get Started</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <h1 class="reveal">Global Payments,<br>Zero Boundaries.</h1>
+        <p class="reveal">We provide fully verified, high-limit Stripe accounts for entrepreneurs worldwide. Skip the red tape and start scaling today.</p>
+        <div class="cta-group reveal">
+            <a href="#" class="btn-lg primary-btn">Buy Account Now</a>
+            <a href="#" class="btn-lg" style="color: white; border: 1px solid var(--glass);">View Pricing</a>
+        </div>
+    </section>
+
+    <section id="services">
+        <div class="service-details reveal">
+            <h2>Engineered for Scale</h2>
+            <p style="text-align: center; margin-bottom: 50px;">Don't let regional restrictions or documentation hurdles stop your business. Our Stripe solutions are built for high-volume e-commerce and SaaS platforms.</p>
+        </div>
+        
+        <div class="grid">
+            <div class="card reveal">
+                <div class="icon">✓</div>
+                <h3>Fully Verified</h3>
+                <p>Documents, address, and EIN/Tax ID verification completed. Ready for immediate payout integration.</p>
+            </div>
+            <div class="card reveal">
+                <div class="icon">⚡</div>
+                <h3>Instant Onboarding</h3>
+                <p>No 7-day waiting periods. Receive your credentials and start processing live transactions within hours.</p>
+            </div>
+            <div class="card reveal">
+                <div class="icon">🛡️</div>
+                <h3>Anti-Ban Shield</h3>
+                <p>Accounts warmed up with legitimate transaction history to minimize risk of sudden holds.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="process">
+        <div class="feature-row reveal">
+            <div class="feature-text">
+                <h2 style="color: white; margin-bottom: 1.5rem;">How it Works</h2>
+                <div class="step">
+                    <span class="step-num">1</span>
+                    <h4 style="color: white;">Select Your Region</h4>
+                    <p>Choose between US, UK, or EU-based accounts depending on your business needs.</p>
+                </div>
+                <div class="step">
+                    <span class="step-num">2</span>
+                    <h4 style="color: white;">Automated Setup</h4>
+                    <p>Our system configures the secondary security layers and hands over recovery keys.</p>
+                </div>
+                <div class="step">
+                    <span class="step-num">3</span>
+                    <h4 style="color: white;">Go Live</h4>
+                    <p>Connect your store via API and begin accepting 135+ currencies instantly.</p>
+                </div>
+            </div>
+            <div class="feature-image"></div>
+        </div>
+    </section>
+
+    <section id="security" style="background: rgba(0,0,0,0.2);">
+        <div class="service-details reveal">
+            <h2 style="font-size: 2.5rem;">Unmatched Reliability</h2>
+            <div class="grid">
+                <div class="card reveal">
+                    <h3>24/7 Support</h3>
+                    <p>Dedicated account managers to help with transaction disputes and technical API integration.</p>
+                </div>
+                <div class="card reveal">
+                    <h3>Rolling Reserves</h3>
+                    <p>We provide guidance on managing reserves to keep your cash flow healthy and account standing "Excellent".</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 StripeFlow Solutions. All rights reserved. Not affiliated with Stripe, Inc.</p>
+    </footer>
+
+</body>
+</html>
